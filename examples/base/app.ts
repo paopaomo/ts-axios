@@ -53,3 +53,18 @@ axios({
     bar: 'baz'
   }
 });
+
+axios({
+  method: 'POST',
+  url: '/base/post',
+  data: {
+    a: 1,
+    b: 2
+  }
+});
+
+axios({
+  method: 'POST',
+  url: '/base/buffer',
+  data: new Int32Array([21, 31])
+})
