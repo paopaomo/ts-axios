@@ -65,6 +65,28 @@ axios({
 
 axios({
   method: 'POST',
+  url: '/base/post',
+  headers: {
+    'content-type': 'application/json',
+    'Accept': 'application/json, text/plain, */*'
+  },
+  data: {
+    a: 1,
+    b: 2
+  }
+});
+
+const paramsString = 'q=URLUtils.searchParams&topic=api';
+const searchParams = new URLSearchParams(paramsString);
+
+axios({
+  method: 'POST',
+  url: '/base/post',
+  data: searchParams
+});
+
+axios({
+  method: 'POST',
   url: '/base/buffer',
   data: new Int32Array([21, 31])
-})
+});
