@@ -8,13 +8,15 @@ const webpackConfig = require('./webpack.config');
 const app = express();
 const compiler = webpack(webpackConfig);
 
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: '/__build__/',
-  stats: {
-    colors: true,
-    chunks: false
-  }
-}));
+app.use(
+  webpackDevMiddleware(compiler, {
+    publicPath: '/__build__/',
+    stats: {
+      colors: true,
+      chunks: false
+    }
+  })
+);
 
 app.use(webpackHotMiddleware(compiler));
 
@@ -42,7 +44,7 @@ router.post('/base/post', function(req, res) {
 router.post('/base/buffer', function(req, res) {
   const msg = [];
   req.on('data', chunk => {
-    if(chunk) {
+    if (chunk) {
       msg.push(chunk);
     }
   });
@@ -52,10 +54,29 @@ router.post('/base/buffer', function(req, res) {
   });
 });
 
+router.get('/error/get', function(req, res) {
+  if (Math.random() > 0.5) {
+    res.json({
+      msg: 'Hello World'
+    });
+  } else {
+    res.status(500);
+    res.end();
+  }
+});
+
+router.get('/error/timeout', function(req, res) {
+  setTimeout(() => {
+    res.json({
+      msg: 'Hello World'
+    });
+  }, 3000);
+});
+
 app.use(router);
 
 const port = process.env.PORT || 8080;
 
 module.exports = app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}, Control+C to stop`);
-})
+});
