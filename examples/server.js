@@ -37,6 +37,8 @@ registerExtendRouter();
 
 registerInterceptorRouter();
 
+registerConfigRouter();
+
 app.use(router);
 
 const port = process.env.PORT || 8080;
@@ -105,15 +107,15 @@ function registerExtendRouter() {
   });
 
   router.delete('/extend/delete', function(req, res) {
-    res.end()
+    res.end();
   });
 
   router.head('/extend/head', function(req, res) {
-    res.end()
+    res.end();
   });
 
   router.options('/extend/options', function(req, res) {
-    res.end()
+    res.end();
   });
 
   router.post('/extend/post', function(req, res) {
@@ -143,5 +145,11 @@ function registerExtendRouter() {
 function registerInterceptorRouter() {
   router.get('/interceptor/get', function(req, res) {
     res.end('Hello World');
+  });
+}
+
+function registerConfigRouter() {
+  router.post('/config/post', function(req, res) {
+    res.json(req.body);
   });
 }
