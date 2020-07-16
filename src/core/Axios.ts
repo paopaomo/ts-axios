@@ -21,12 +21,14 @@ interface PromiseChain<T> {
 
 export default class Axios {
   interceptors: Interceptors;
+  defaults: AxiosRequestConfig;
 
-  constructor() {
+  constructor(initConfig: AxiosRequestConfig) {
     this.interceptors = {
       request: new InterceptorManager<AxiosRequestConfig>(),
       response: new InterceptorManager<AxiosResponse>()
     };
+    this.defaults = initConfig;
   }
 
   request(url: any, config?: any): AxiosPromise {
