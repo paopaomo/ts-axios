@@ -57,7 +57,7 @@ export default function mergeConfig(config1: AxiosRequestConfig, config2?: Axios
 
   function mergeField(key: string): void {
     const strategyFunc = strategy[key] || defaultStrategy;
-    config[key] = strategyFunc(config1[key], config2[key]);
+    config[key] = strategyFunc(config1[key], config2![key]);
   }
 
   return config;
