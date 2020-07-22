@@ -1,4 +1,9 @@
-import { isDate, isPlainObject } from './util'
+import { isDate, isPlainObject } from './util';
+
+interface URLOrigin {
+  protocol: string;
+  host: string;
+}
 
 function encode(val: string): string {
   return encodeURIComponent(val)
@@ -8,47 +13,66 @@ function encode(val: string): string {
     .replace(/%2c/gi, ',')
     .replace(/%20/g, '+')
     .replace(/%5b/gi, '[')
-    .replace(/%5d/gi, ']')
+    .replace(/%5d/gi, ']');
 }
 
 export function buildURL(url: string, params?: any): string {
   if (!params) {
-    return url
+    return url;
   }
 
-  const parts: string[] = []
+  const parts: string[] = [];
 
   Object.keys(params).forEach(key => {
-    const val = params[key]
+    const val = params[key];
     if (val === null || typeof val === 'undefined') {
-      return
+      return;
     }
-    let values = []
+    let values = [];
     if (Array.isArray(val)) {
-      values = val
-      key = `${key}[]`
+      values = val;
+      key = `${key}[]`;
     } else {
-      values = [val]
+      values = [val];
     }
     values.forEach(item => {
       if (isDate(item)) {
-        item = item.toISOString()
+        item = item.toISOString();
       } else if (isPlainObject(item)) {
-        item = JSON.stringify(item)
+        item = JSON.stringify(item);
       }
-      parts.push(`${encode(key)}=${encode(item)}`)
-    })
-  })
+      parts.push(`${encode(key)}=${encode(item)}`);
+    });
+  });
 
-  const serializedParams = parts.join('&')
+  const serializedParams = parts.join('&');
 
   if (serializedParams) {
-    const markIndex = url.indexOf('#')
+    const markIndex = url.indexOf('#');
     if (markIndex !== -1) {
-      url = url.slice(0, markIndex)
+      url = url.slice(0, markIndex);
     }
-    url += `${url.indexOf('?') === -1 ? '?' : '&'}${serializedParams}`
+    url += `${url.indexOf('?') === -1 ? '?' : '&'}${serializedParams}`;
   }
 
-  return url
+  return url;
+}
+
+export function isURLSameOrigin(requestURL: string): boolean {
+  const parsedOrigin = resolveURL(requestURL);
+  return (
+    parsedOrigin.protocol === currentOrigin.protocol && parsedOrigin.host === currentOrigin.host
+  );
+}
+
+const urlParsingNode = document.createElement('a');
+const currentOrigin = resolveURL(window.location.href);
+
+function resolveURL(url: string): URLOrigin {
+  urlParsingNode.setAttribute('href', url);
+  const { protocol, host } = urlParsingNode;
+  return {
+    protocol,
+    host
+  };
 }
