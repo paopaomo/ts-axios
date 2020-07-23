@@ -32,7 +32,7 @@ strategyKeysFromVal2.forEach(key => {
   strategy[key] = fromVal2Strategy;
 });
 
-const strategyKeysDeepMerge = ['headers'];
+const strategyKeysDeepMerge = ['headers', 'auth'];
 
 strategyKeysDeepMerge.forEach(key => {
   strategy[key] = deepMergeStrategy;
