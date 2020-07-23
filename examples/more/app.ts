@@ -82,3 +82,16 @@ uploadEl!.addEventListener('click', () => {
     progressInstance.post('/more/upload', data);
   }
 });
+
+axios
+  .post(
+    '/more/post',
+    { a: 1 },
+    {
+      auth: {
+        username: 'Zi Ye',
+        password: '123456789'
+      }
+    }
+  )
+  .then(console.log);
