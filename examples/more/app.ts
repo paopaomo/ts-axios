@@ -142,3 +142,12 @@ instance1
     }
   })
   .then(console.log);
+
+const instance2 = axios.create({
+  baseURL: 'https://ss1.bdstatic.com/'
+});
+
+instance2.get('70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3922290090,3177876335&fm=26&gp=0.jpg');
+instance2.get(
+  'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3922290090,3177876335&fm=26&gp=0.jpg'
+);
