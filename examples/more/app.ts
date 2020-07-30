@@ -95,3 +95,17 @@ axios
     }
   )
   .then(console.log);
+
+axios
+  .get('/more/304')
+  .then(console.log)
+  .catch(err => console.error(err.message));
+
+axios
+  .get('/more/304', {
+    validateStatus(status) {
+      return status >= 200 && status < 400;
+    }
+  })
+  .then(console.log)
+  .catch(err => console.error(err.message));
