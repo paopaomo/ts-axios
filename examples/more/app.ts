@@ -151,3 +151,35 @@ instance2.get('70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3922290090,3177876335&fm=26&gp=0
 instance2.get(
   'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3922290090,3177876335&fm=26&gp=0.jpg'
 );
+
+function getA() {
+  return axios.get('/more/A');
+}
+
+function getB() {
+  return axios.get('/more/B');
+}
+
+axios.all([getA(), getB()]).then(
+  axios.spread(function(resA, resB) {
+    console.log(resA.data);
+    console.log(resB.data);
+  })
+);
+
+axios.all([getA(), getB()]).then(([resA, resB]) => {
+  console.log(resA.data);
+  console.log(resB.data);
+});
+
+const fakeConfig = {
+  baseURL: 'https://www.baidu.com',
+  url: '/user/12345',
+  params: {
+    idClient: 1,
+    idTest: 2,
+    testString: 'thisIsTest'
+  }
+};
+
+console.log(axios.getUri(fakeConfig));
