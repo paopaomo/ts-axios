@@ -1,6 +1,7 @@
 import NProgress from 'nprogress';
-import axios from '../../src';
 import 'nprogress/nprogress.css';
+import qs from 'qs';
+import axios from '../../src';
 
 document.cookie = 'a=b';
 
@@ -109,3 +110,35 @@ axios
   })
   .then(console.log)
   .catch(err => console.error(err.message));
+
+axios
+  .get('/more/get', {
+    params: new URLSearchParams('a=b&c=d')
+  })
+  .then(console.log);
+
+axios
+  .get('/more/get', {
+    params: {
+      a: 1,
+      b: 2,
+      c: ['a', 'b', 'c']
+    }
+  })
+  .then(console.log);
+
+const instance1 = axios.create({
+  paramsSerializer(params) {
+    return qs.stringify(params, { arrayFormat: 'brackets' });
+  }
+});
+
+instance1
+  .get('/more/get', {
+    params: {
+      a: 1,
+      b: 2,
+      c: ['a', 'b', 'c']
+    }
+  })
+  .then(console.log);
