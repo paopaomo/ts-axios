@@ -2,6 +2,9 @@ import { deepMerge, isPlainObject } from './util';
 import { Method } from '../types';
 
 function normalizeHeaderName(headers: any, normalizedName: string): void {
+  if(!headers) {
+    return;
+  }
   Object.keys(headers).forEach(name => {
     if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
       headers[normalizedName] = headers[name];
@@ -30,11 +33,12 @@ export function parseHeaders(headers: string): any {
   }
 
   headers.split('\r\n').forEach(line => {
-    let [key, value] = line.split(':');
+    let [key, ...vals] = line.split(':');
     key = key.trim().toLowerCase();
     if (!key) {
       return;
     }
+    let value = vals.join(':').trim();
     if (value) {
       value = value.trim();
     }
