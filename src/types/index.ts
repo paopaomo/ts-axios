@@ -144,7 +144,7 @@ export interface CancelTokenStatic {
 }
 
 export interface Cancel {
-  massage?: string;
+  message?: string;
 }
 
 export interface CancelStatic {
