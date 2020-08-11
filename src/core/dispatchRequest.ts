@@ -9,7 +9,12 @@ function dispatchRequest(config: AxiosRequestConfig): AxiosPromise {
 
   throwIfCancellationRequested(config);
 
-  return xhr(config).then(transformResponseData);
+  return xhr(config).then(transformResponseData, e => {
+    if (e && e.response) {
+      e.response = transformResponseData(e.response);
+    }
+    return Promise.reject(e);
+  });
 }
 
 function processConfig(config: AxiosRequestConfig): void {
