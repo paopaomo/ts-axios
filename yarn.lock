@@ -1589,6 +1589,11 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
+"@types/jasmine-ajax@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.npm.taobao.org/@types/jasmine-ajax/download/@types/jasmine-ajax-3.3.1.tgz#69bc09babecc600cd80ba7e23f61937b0eea735c"
+  integrity sha1-abwJur7MYAzYC6fiP2GTew7qc1w=
+
 "@types/jest@^26.0.7":
   version "26.0.7"
   resolved "https://registry.npm.taobao.org/@types/jest/download/@types/jest-26.0.7.tgz?cache=0&sync_timestamp=1595574388862&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjest%2Fdownload%2F%40types%2Fjest-26.0.7.tgz#495cb1d1818c1699dbc3b8b046baf1c86ef5e324"
@@ -5930,6 +5935,16 @@ istanbul-reports@^3.0.2:
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
+
+jasmine-ajax@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npm.taobao.org/jasmine-ajax/download/jasmine-ajax-4.0.0.tgz#7d8ba7e47e3f7e780e155fe9aa563faafa7e1a26"
+  integrity sha1-fYun5H4/fngOFV/pqlY/qvp+GiY=
+
+jasmine-core@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.npm.taobao.org/jasmine-core/download/jasmine-core-3.6.0.tgz?cache=0&sync_timestamp=1596001369737&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjasmine-core%2Fdownload%2Fjasmine-core-3.6.0.tgz#491f3bb23941799c353ceb7a45b38a950ebc5a20"
+  integrity sha1-SR87sjlBeZw1POt6RbOKlQ68WiA=
 
 java-properties@^1.0.0:
   version "1.0.2"
