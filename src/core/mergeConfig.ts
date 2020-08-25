@@ -19,9 +19,7 @@ function deepMergeStrategy(val1: any, val2: any): any {
   if (isPlainObject(val1)) {
     return deepMerge(val1);
   }
-  if (typeof val1 !== 'undefined') {
-    return val1;
-  }
+  return val1;
 }
 
 const strategy = Object.create(null);
