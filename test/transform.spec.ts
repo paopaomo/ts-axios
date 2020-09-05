@@ -11,13 +11,11 @@ describe('transform', () => {
   });
 
   test('should transform JSON to string', () => {
-    const data = {
+    axios.post('/foo', {
       foo: 'bar'
-    };
+    });
 
-    axios.post('/foo', data);
-
-    getAjaxRequest().then(request => {
+    return getAjaxRequest().then(request => {
       expect(request.params).toBe('{"foo":"bar"}');
     });
   });
